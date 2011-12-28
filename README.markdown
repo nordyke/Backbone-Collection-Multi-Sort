@@ -49,23 +49,28 @@ index = models.sortIndex(model)			//returns 2
 </pre>
 
 <h3>add(model)</h3>
-		//Backbone.Collection._add has been extended.  First it calls the parent,
-		//then it moves the model to correct position if asorted collection.
-		var models = new MultiSortCollection
-				model,
-				index;
-				
-		models.add([
-			new Backbone.Model({name : "Charlie",number: 5}),
-			new Backbone.Model({name : "Billy", number: 7}),
-			new Backbone.Model({name : "Albert",number: 1})
-		]);
+<pre>
+<code>
+//Backbone.Collection._add has been extended.  First it calls the parent,
+//then it moves the model to correct position if asorted collection.
+var models = new MultiSortCollection
+		model,
+		index;
 		
-		models.sortBy("name","number"); //collection order is now [Albert 1, Billy 7, Charlie 5]
-		
-		model = new Backbone.Model({name : "Charlie",number: 4})
-		
-		index = models.add(model)			//collection order is now [Albert 1, Billy 7, Charlie 4, Charlie 5]
+models.add([
+	new Backbone.Model({name : "Charlie",number: 5}),
+	new Backbone.Model({name : "Billy", number: 7}),
+	new Backbone.Model({name : "Albert",number: 1})
+]);
+
+models.sortBy("name","number"); //collection order is now [Albert 1, Billy 7, Charlie 5]
+
+model = new Backbone.Model({name : "Charlie",number: 4})
+
+index = models.add(model)			//collection order is now [Albert 1, Billy 7, Charlie 4, Charlie 5]
+</code>
+</pre>
+
 <h2>Known Issues</h2>
 <p>
 	<code>MultiSortCollection.sortIndex()</code>does not work with <code>Backbone.Collection.comparator</code>.  Avoid using
