@@ -48,13 +48,28 @@ index = models.sortIndex(model)			//returns 2
 </code>
 </pre>
 
+<h3>add(model)</h3>
+		//Backbone.Collection._add has been extended.  First it calls the parent,
+		//then it moves the model to correct position if asorted collection.
+		var models = new MultiSortCollection
+				model,
+				index;
+				
+		models.add([
+			new Backbone.Model({name : "Charlie",number: 5}),
+			new Backbone.Model({name : "Billy", number: 7}),
+			new Backbone.Model({name : "Albert",number: 1})
+		]);
+		
+		models.sortBy("name","number"); //collection order is now [Albert 1, Billy 7, Charlie 5]
+		
+		model = new Backbone.Model({name : "Charlie",number: 4})
+		
+		index = models.add(model)			//collection order is now [Albert 1, Billy 7, Charlie 4, Charlie 5]
 <h2>Known Issues</h2>
 <p>
-	When models are added to a sorted collection, they are not automatically inserted into
-	sorted position.  <code>Backbone.add</code> utilizes Underscore's <code>sortIndex()</code> method to determine where to insert.
-</p>
-<p>
-	<em>CAUTION:</em> <code>MultiSortCollection.sortIndex()</code>does not work with <code>Backbone.Collection.comparator</code>. 
+	<code>MultiSortCollection.sortIndex()</code>does not work with <code>Backbone.Collection.comparator</code>.  Avoid using
+	<code>comparator</code> if using this library. 
 </p>
 
 <p>
