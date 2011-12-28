@@ -29,13 +29,6 @@ describe("Multi-sort collection",function(){
 			expect(models._sortAttributes).toEqual(["name","number"]);
 		});
 
-		it("resorts when order is added",function(){
-			models.sortBy("name","number");
-			expect(models.pluck("name")	).toEqual(["Albert","Billy","Charlie"]);
-			models.add({name : "Aaron",number:0});
-			expect(models.pluck("name")).toEqual(["Aaron","Albert","Billy","Charlie"]);
-		});
-
 	});
 	
 	describe("sortIndex",function(){
@@ -66,8 +59,20 @@ describe("Multi-sort collection",function(){
 	
 	describe("add",function(){
 		
-		it("calls parent add",function(){
-			
+		it("adds model to correct spot for sorted collection",function(){
+			models.sortBy("name","number");
+			models.add({name : "Aaron",number:0});
+			expect(models.pluck("name")).toEqual(["Aaron","Albert","Billy","Charlie"]);
+		});
+		
+		it("adds multiple models to correct spots",function(){
+			models.sortBy("name","number");
+			models.add([
+				{name : "Aaron",number:0},
+				{name : "Charlie",number:4}
+			]);
+			expect(models.pluck("name")).toEqual(["Aaron","Albert","Billy","Charlie","Charlie"]);
+			expect(models.pluck("number")).toEqual([0,1,1,4,5]);
 		});
 	});
 });
