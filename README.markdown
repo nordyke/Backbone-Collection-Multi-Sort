@@ -1,1 +1,5 @@
-MultiSortCollection extends Backbone.Collection, to allow the user to sort on multiple attributes.
+<h1>Multi-Sort For Backbone Collections</h1>
+
+MultiSortCollections extends Backbone.Collection, giving the ability to sort on multiple attributes
+
+Tests are located at /js/spec/
