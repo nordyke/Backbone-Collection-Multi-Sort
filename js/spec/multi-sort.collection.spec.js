@@ -3,9 +3,6 @@ describe("Multi-sort collection",function(){
 			
 	beforeEach(function(){
 		models = new MultiSortCollection;
-		//models.add(new Backbone.Model({name : "Charlie",number: 5}));
-		//models.add(new Backbone.Model({name : "Billy", number: 1}));
-		//models.add(new Backbone.Model({name : "Albert",number: 1}));
 		models.add([
 			new Backbone.Model({name : "Charlie",number: 5}),
 			new Backbone.Model({name : "Billy", number: 1}),
