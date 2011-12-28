@@ -11,7 +11,7 @@
 	sorted position.  <code>Backbone.add</code> utilizes Underscore's <code>sortIndex()</code> method to determine where to insert.
 </p>
 <p>
-	CAUTION: <code>MultiSortCollection.sortIndex()</code>does not work with <code>Backbone.Collection.comparator</code>. 
+	<em>CAUTION:</em> <code>MultiSortCollection.sortIndex()</code>does not work with <code>Backbone.Collection.comparator</code>. 
 </p>
 
 <p>
@@ -23,4 +23,4 @@ User will need to either:
 </p>
 
 <h2>Unit Tests</h2>
-<p>Jasmin Unit Tests are located at /js/spec/</p>
+<p>Jasmine Unit Tests are located at /js/spec/</p>
