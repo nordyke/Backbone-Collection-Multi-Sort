@@ -23,13 +23,13 @@ var MultiSortCollection = Backbone.Collection.extend({
 	 * @return {Integer} index where model would be inserted into sorted
 	 * 									 collection. Returns end of array, if unsorted.
 	 */
-	sortedIndex : function(model){
+	sortIndex : function(model){
 		var index;
 		//return end of un-sorted arrays
 		if(!this._sorted){
 			return this.models.length;
 		}
-		return this._sortedIndex(model,this.models,this._sortAttributes);
+		return this._sortIndex(model,this.models,this._sortAttributes);
 	},
 	
 		/**
@@ -38,7 +38,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 	 * that correspond to each sortattribute.
 	 * Then sum of indexes from recursions are returned
 	 */
-	_sortedIndex : function(model,models,attributes){
+	_sortIndex : function(model,models,attributes){
 		var that = this,
 				first,
 				firstIndex,
@@ -69,7 +69,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 		});
 		attributes = _.last(attributes,attributes.length-1);
 		
-		return firstIndex + this._sortedIndex(model,models,attributes);
+		return firstIndex + this._sortIndex(model,models,attributes);
 	},
 	
 	/**

@@ -41,29 +41,29 @@ describe("Multi-sort collection",function(){
 */
 	});
 	
-	describe("sortedIndex",function(){
+	describe("sortIndex",function(){
 		
 		it("gets last index for new model when collection is not sorted",function(){
 			var model = new Backbone.Model({name : "Bart",number:0});
-			expect(models.sortedIndex(model)).toEqual(3);
+			expect(models.sortIndex(model)).toEqual(3);
 		});
 
 		it("gets index where new model should be inserted, pt 1",function(){
 			var model = new Backbone.Model({name : "Bart",number:0});
 			models.sortBy("name","number");
-			expect(models.sortedIndex(model)).toEqual(1);
+			expect(models.sortIndex(model)).toEqual(1);
 		});
 		
 		it("gets index where new model should be inserted, pt 2",function(){
 			var model = new Backbone.Model({name : "Billy",number:2});
 			models.sortBy("name","number");
-			expect(models.sortedIndex(model)).toEqual(2);
+			expect(models.sortIndex(model)).toEqual(2);
 		});
 		
 		it("gets index where new model should be inserted, pt 3",function(){
 			var model = new Backbone.Model({name : "Charlie",number:1});
 			models.sortBy("name","number");
-			expect(models.sortedIndex(model)).toEqual(2);
+			expect(models.sortIndex(model)).toEqual(2);
 		});
 	});
 });

@@ -8,14 +8,16 @@
 <h2>Known Issues</h2>
 <p>
 	When models are added to a sorted collection, they are not automatically spliced into
-	their sorted position, because <code>MultiSortCollection.sortedIndex()</code> does not work 
-	with <code>Backbone.Collection.comparator</code>
+	sorted position. 
+</p>
+<p>
+	CAUTION: <code>Backbone.Collection.comparator</code> does not work with <code>MultiSortCollection.sortIndex()</code>.
 </p>
 
 <p>
 User will need to either:
 <ol>
-	<li>use <code>MultiSortCollection.sortedIndex</code> to move the model after it's been added</li>
+	<li>use <code>MultiSortCollection.sortIndex</code> to move the model after it's been added</li>
 	<li>call <code>MultiSortCollection.sortBy</code> after adding models.</li>
 </ol>
 </p>
