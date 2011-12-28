@@ -28,14 +28,14 @@ describe("Multi-sort collection",function(){
 			models.sortBy("name","number");
 			expect(models._sortAttributes).toEqual(["name","number"]);
 		});
-/*
+
 		it("resorts when order is added",function(){
 			models.sortBy("name","number");
 			expect(models.pluck("name")	).toEqual(["Albert","Billy","Charlie"]);
 			models.add({name : "Aaron",number:0});
 			expect(models.pluck("name")).toEqual(["Aaron","Albert","Billy","Charlie"]);
 		});
-*/
+
 	});
 	
 	describe("sortIndex",function(){
@@ -61,6 +61,13 @@ describe("Multi-sort collection",function(){
 			var model = new Backbone.Model({name : "Charlie",number:1});
 			models.sortBy("name","number");
 			expect(models.sortIndex(model)).toEqual(2);
+		});
+	});
+	
+	describe("add",function(){
+		
+		it("calls parent add",function(){
+			
 		});
 	});
 });

@@ -6,7 +6,8 @@
 var MultiSortCollection = Backbone.Collection.extend({
 	
 	_sorted : false,
-	
+
+
 	/**
 	 * Sort by supplied attributes.  First param is sorted first, and
 	 * last final is final subsort.  Will use most recent sortAttributes, if none supplied.
@@ -66,7 +67,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 		}
 		//else get indexOf 'first'
 		//indexOf first
-		firstIndex = _(models).indexOf(first);
+		firstIndex = _.indexOf(models,first);
 		//get group of models with identical attribute
 		//and call recursive function on next attribute in the list.
 		models = _(models).filter(function(m){
@@ -113,6 +114,15 @@ var MultiSortCollection = Backbone.Collection.extend({
 				models[index] = that._sortBy(models[index],attributes);
 			});
 			return _(models).flatten();	
+		}
+	},
+		
+	_add : function(models,options){
+		var model = Backbone.Collection.prototype._add.call(this,models,options);
+		//move model into sorted position
+		if(this._sorted){
+			this.models.splice(this.indexOf(model), 1);
+			this.models.splice(this.sortIndex(model),0,model);
 		}
 	}
 });
