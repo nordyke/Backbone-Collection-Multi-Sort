@@ -52,7 +52,7 @@ index = models.sortIndex(model)			//returns 2
 <pre>
 <code>
 //Backbone.Collection._add has been extended.  First it calls the parent,
-//then it moves the model to correct position if asorted collection.
+//then it moves the new model to correct sort position if the collection is sorted
 var models = new MultiSortCollection
 		model;
 		
