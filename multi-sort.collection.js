@@ -1,3 +1,8 @@
+/**
+ * Multi-Attribute Sort Functionality for Backbone Collections
+ * @author Aaron Nordyke, aaron.nordyke@gmail.com
+ * @requires Backbone,Underscore
+ */
 var MultiSortCollection = Backbone.Collection.extend({
 	
 	_sorted : false,
