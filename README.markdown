@@ -78,4 +78,4 @@ models.add(model);	//collection order is now [Albert 1, Billy 7, Charlie 4, Char
 
 
 <h2>Unit Tests</h2>
-<p>Jasmine Unit Tests are located at /spec/</p>
+<p>Jasmine Unit Tests are located at spec/</p>
