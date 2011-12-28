@@ -91,10 +91,8 @@ var MultiSortCollection = Backbone.Collection.extend({
 		}
 		else{
 			attr = attributes[0];
-			attributes = _.last(attributes,attributes.length-1);
 			
-			//split up models by sort attribute, 
-			//then call _sortBy with remaining attributes
+			//split up models by sort attribute, then call _sortBy with remaining attributes
 			models = _(models).chain().
 				sortBy(function(model){
 					return model.get(attr);
@@ -104,7 +102,8 @@ var MultiSortCollection = Backbone.Collection.extend({
 				}).
 				toArray().
 				value();
-			
+				
+			attributes = _.last(attributes,attributes.length-1);
 			_(models).each(function(modelSet,index){
 				models[index] = that._sortBy(models[index],attributes);
 			});
