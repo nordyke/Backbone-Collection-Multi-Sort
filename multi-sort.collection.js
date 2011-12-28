@@ -7,7 +7,6 @@ var MultiSortCollection = Backbone.Collection.extend({
 	
 	_sorted : false,
 
-
 	/**
 	 * Sort by supplied attributes.  First param is sorted first, and
 	 * last final is final subsort.  Will use most recent sortAttributes, if none supplied.
@@ -116,7 +115,11 @@ var MultiSortCollection = Backbone.Collection.extend({
 			return _(models).flatten();	
 		}
 	},
-		
+	
+	/**
+	 * Call super, and then, for sorted collections, it moves model
+	 * to correct position.
+	 */	
 	_add : function(models,options){
 		var model = Backbone.Collection.prototype._add.call(this,models,options);
 		//move model into sorted position
