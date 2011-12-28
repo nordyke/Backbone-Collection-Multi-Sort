@@ -4,7 +4,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 	
 	/**
 	 * Sort by supplied attributes.  First param is sorted first, and
-	 * last final is final subsort
+	 * last final is final subsort.  Will use most recent sortAttributes, if none supplied.
 	 * @param {String} sortAttributes
 	 */
 	sortBy : function(sortAttributes){
