@@ -1,8 +1,7 @@
 <h1>Multi-Sort For Backbone Collections</h1>
 
 <p>
-	<code>MultiSortCollections</code>
-	(multi-sort.collection.js) extends <code>Backbone.Collection</code>, 
+	<code>MultiSortCollections</code> extends <code>Backbone.Collection</code>, 
 	giving the ability to sort on multiple attributes.
 </p>
 
@@ -17,7 +16,7 @@
 User will need to either:
 <ol>
 	<li>use <code>MultiSortCollection.sortedIndex</code> to move the model after it's been added</li>
-	<li>call MultiSortCollection.sortBy after adding models.</li>
+	<li>call <code>MultiSortCollection.sortBy</code> after adding models.</li>
 </ol>
 </p>
 
