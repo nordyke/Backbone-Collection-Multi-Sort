@@ -76,13 +76,6 @@ models.add(model);	//collection order is now [Albert 1, Billy 7, Charlie 4, Char
 	<code>comparator</code> if using this library. 
 </p>
 
-<p>
-User will need to either:
-<ol>
-	<li>use <code>MultiSortCollection.sortIndex</code> to move the model after it's been added</li>
-	<li>call <code>MultiSortCollection.sortBy</code> after adding models.</li>
-</ol>
-</p>
 
 <h2>Unit Tests</h2>
 <p>Jasmine Unit Tests are located at /spec/</p>
