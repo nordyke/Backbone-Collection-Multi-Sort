@@ -48,7 +48,7 @@ index = models.sortIndex(model)			//returns 2
 </code>
 </pre>
 
-<h3>add(model)</h3>
+<h3>add(model,[options])</h3>
 <pre>
 <code>
 //Backbone.Collection._add has been extended.  First it calls the parent,
