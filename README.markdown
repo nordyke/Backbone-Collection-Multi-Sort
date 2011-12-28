@@ -7,11 +7,11 @@
 
 <h2>Known Issues</h2>
 <p>
-	When models are added to a sorted collection, they are not automatically spliced into
-	sorted position. 
+	When models are added to a sorted collection, they are not automatically inserted into
+	sorted position.  <code>Backbone.add</code> utilizes Underscore's <code>sortIndex()</code> method to determine where to insert.
 </p>
 <p>
-	CAUTION: <code>Backbone.Collection.comparator</code> does not work with <code>MultiSortCollection.sortIndex()</code>.
+	CAUTION: <code>MultiSortCollection.sortIndex()</code>does not work with <code>Backbone.Collection.comparator</code>. 
 </p>
 
 <p>
