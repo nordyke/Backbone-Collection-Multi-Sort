@@ -26,7 +26,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 	 * Do NOT call on unsorted collection.
 	 * @param {Object} model 
 	 * @return {Integer} index where model would be inserted into sorted
-	 * 									 collection. Returns end of array, if unsorted.
+	 * collection. Returns end of array, if unsorted.
 	 */
 	sortIndex : function(model){
 		var index;
@@ -39,9 +39,14 @@ var MultiSortCollection = Backbone.Collection.extend({
 	
 		/**
 	 * Recursive sortedIndex
-	 * Each recursion finds sortedIndex of subset of models
+	 * Each recursion finds sortIndex of subset of models
 	 * that correspond to each sortattribute.
 	 * Then sum of indexes from recursions are returned
+	 * @private
+	 * @param {Object} model
+	 * @param {Array} models
+	 * @param {Array} attributes
+	 * @returns {Integer} sum of indexes from child recursions.
 	 */
 	_sortIndex : function(model,models,attributes){
 		var that = this,
@@ -58,7 +63,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 			return m.get(attr) === model.get(attr);
 		});
 		//base case #2:  no other model with identical attr value
-		//so just return the index where it should be inserted
+		//so just return the index where model should be inserted
 		if(_.isEmpty(first)){
 			return _(models).sortedIndex(model,function(m){
 				return m.get(attr);
@@ -67,6 +72,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 		//else get indexOf 'first'
 		//indexOf first
 		firstIndex = _.indexOf(models,first);
+		
 		//get group of models with identical attribute
 		//and call recursive function on next attribute in the list.
 		models = _(models).filter(function(m){
@@ -78,7 +84,10 @@ var MultiSortCollection = Backbone.Collection.extend({
 	},
 	
 	/**
-	 * Recursive sort
+	 * Recursive sort on supplied attributes
+	 * @private
+	 * @param {Array} models
+	 * @param {Array} attributes
 	 */
 	_sortBy : function(models,attributes){
 		var attr,
@@ -87,17 +96,15 @@ var MultiSortCollection = Backbone.Collection.extend({
 		if(!attributes.length){
 			return this.models;
 		}
+		attr = attributes[0];
 		//base case
 		if(attributes.length === 1){
-			attr = attributes[0];
 			return _(models).sortBy(function(model){
 				return model.get(attr);
 			});
 		}
+		//split up models by sort attribute, then call _sortBy with remaining attributes
 		else{
-			attr = attributes[0];
-			
-			//split up models by sort attribute, then call _sortBy with remaining attributes
 			models = _(models).chain().
 				sortBy(function(model){
 					return model.get(attr);
@@ -117,12 +124,12 @@ var MultiSortCollection = Backbone.Collection.extend({
 	},
 	
 	/**
-	 * Call super, and then, for sorted collections, it moves model
+	 * Calls super (Backbone.Collection._add), and then for sorted collections, it moves model
 	 * to correct position.
+	 * @private
 	 */	
 	_add : function(models,options){
 		var model = Backbone.Collection.prototype._add.call(this,models,options);
-		//move model into sorted position
 		if(this._sorted){
 			this.models.splice(this.indexOf(model), 1);
 			this.models.splice(this.sortIndex(model),0,model);

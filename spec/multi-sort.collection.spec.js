@@ -4,9 +4,9 @@ describe("Multi-sort collection",function(){
 	beforeEach(function(){
 		models = new MultiSortCollection;
 		models.add([
-			new Backbone.Model({name : "Charlie",number: 5}),
-			new Backbone.Model({name : "Billy", number: 1}),
-			new Backbone.Model({name : "Albert",number: 1})
+			{name : "Charlie",number: 5},
+			{name : "Billy", number: 1},
+			{name : "Albert",number: 1}
 		]);
 	});
 	
@@ -18,7 +18,7 @@ describe("Multi-sort collection",function(){
 		});
 	
 		it("sorts by two attributes",function(){
-			models.add(new Backbone.Model({name : "Charlie",number:0}));
+			models.add({name : "Charlie",number:0});
 			models.sortBy("name","number");
 			expect(models.pluck("name")).toEqual(["Albert","Billy","Charlie","Charlie"]);
 			expect(models.pluck("number")).toEqual([1,1,0,5]);
@@ -58,6 +58,11 @@ describe("Multi-sort collection",function(){
 	});
 	
 	describe("add",function(){
+		
+		it("adds model to end of array for unsorted collection",function(){
+			models.add({name : "Aaron",number:0});
+			expect(models.pluck("name")).toEqual(["Charlie","Billy","Albert","Aaron"]);
+		});
 		
 		it("adds model to correct spot for sorted collection",function(){
 			models.sortBy("name","number");
