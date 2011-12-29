@@ -13,10 +13,10 @@ This is basic usage for the methods.  See unit tests for additional examples.
 <code>
 var models = new MultiSortCollection;
 models.add([
-	new Backbone.Model({name : "Charlie",number: 5}),
-	new Backbone.Model({name : "Billy", number: 7}),
-	new Backbone.Model({name : "Albert",number: 1}),
-	new Backbone.Model({name : "Charlie",number: 4})
+	{name : "Charlie",number: 5},
+	{name : "Billy", number: 7},
+	{name : "Albert",number: 1},
+	{name : "Charlie",number: 4}
 ]);
 
 //collection order is [Charlie 5, Billy 7, Albert 1, Charlie 4]
@@ -34,9 +34,9 @@ var models = new MultiSortCollection,
 		index;
 		
 models.add([
-	new Backbone.Model({name : "Charlie",number: 5}),
-	new Backbone.Model({name : "Billy", number: 7}),
-	new Backbone.Model({name : "Albert",number: 1})
+	{name : "Charlie",number: 5},
+	{name : "Billy", number: 7},
+	{name : "Albert",number: 1}
 ]);
 
 models.sortBy("name","number"); //collection order is now [Albert 1, Billy 7, Charlie 5]
@@ -57,9 +57,9 @@ var models = new MultiSortCollection
 		model;
 		
 models.add([
-	new Backbone.Model({name : "Charlie",number: 5}),
-	new Backbone.Model({name : "Billy", number: 7}),
-	new Backbone.Model({name : "Albert",number: 1})
+	{name : "Charlie",number: 5},
+	{name : "Billy", number: 7},
+	{name : "Albert",number: 1}
 ]);
 
 models.sortBy("name","number"); //collection order is now [Albert 1, Billy 7, Charlie 5]
