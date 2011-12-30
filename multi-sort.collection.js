@@ -1,17 +1,17 @@
-/**
- * Multi-Attribute Sort Functionality for Backbone Collections
- * @author Aaron Nordyke, aaron.nordyke@gmail.com
- * @requires Backbone,Underscore
- */
+// 	Multi-Attribute Sort Functionality for Backbone Collections
+// 	@author Aaron Nordyke, aaron.nordyke@gmail.com
+// 	@requires Backbone,Underscore
 var MultiSortCollection = Backbone.Collection.extend({
 	
+	//boolean indicator for whether the collection is sorted
 	_sorted : false,
 
-	/**
-	 * Sort by supplied attributes.  First param is sorted first, and
-	 * last final is final subsort.  Will use most recent sortAttributes, if none supplied.
-	 * @param {String} sortAttributes
-	 */
+	// Public API
+  	// -------------
+
+	// Sort by supplied attributes.  First param is sorted first, and
+	// last final is final subsort.  Will use most recent sortAttributes, if none supplied.
+	// `sortAttributes` Array
 	sortBy : function(sortAttributes){
 		var attributes = arguments;
 		if(arguments.length){
@@ -21,13 +21,12 @@ var MultiSortCollection = Backbone.Collection.extend({
 		this._sorted = true;
 	},
 	
-		/**
-	 * Returns where model would be placed into sorted collection.
-	 * Do NOT call on unsorted collection.
-	 * @param {Object} model 
-	 * @return {Integer} index where model would be inserted into sorted
-	 * collection. Returns end of array, if unsorted.
-	 */
+
+	// Returns where model would be placed into sorted collection.
+	// Do NOT call on unsorted collection.
+	// @param {Object} model 
+	// @return {Integer} index where model would be inserted into sorted
+	// collection. Returns end of array, if unsorted.
 	sortIndex : function(model){
 		var index;
 		//return end of un-sorted arrays
@@ -37,17 +36,18 @@ var MultiSortCollection = Backbone.Collection.extend({
 		return this._sortIndex(model,this.models,this._sortAttributes);
 	},
 	
-		/**
-	 * Recursive sortedIndex
-	 * Each recursion finds sortIndex of subset of models
-	 * that correspond to each sortattribute.
-	 * Then sum of indexes from recursions are returned
-	 * @private
-	 * @param {Object} model
-	 * @param {Array} models
-	 * @param {Array} attributes
-	 * @returns {Integer} sum of indexes from child recursions.
-	 */
+	// Private Functons
+  	// -------------
+
+	// Recursive sortedIndex
+	// Each recursion finds sortIndex of subset of models
+	// that correspond to each sortattribute.
+	// Then sum of indexes from recursions are returned
+	// @private
+	// @param {Object} model
+	// @param {Array} models
+	// @param {Array} attributes
+	// @returns {Integer} sum of indexes from child recursions.
 	_sortIndex : function(model,models,attributes){
 		var that = this,
 				first,
@@ -83,12 +83,10 @@ var MultiSortCollection = Backbone.Collection.extend({
 		return firstIndex + this._sortIndex(model,models,attributes);
 	},
 	
-	/**
-	 * Recursive sort on supplied attributes
-	 * @private
-	 * @param {Array} models
-	 * @param {Array} attributes
-	 */
+	// Recursive sort on supplied attributes
+	// @private
+	// @param {Array} models
+	// @param {Array} attributes
 	_sortBy : function(models,attributes){
 		var attr,
 				that = this;
@@ -123,11 +121,9 @@ var MultiSortCollection = Backbone.Collection.extend({
 		}
 	},
 	
-	/**
-	 * Calls super (Backbone.Collection._add), and then for sorted collections, it moves model
-	 * to correct position.
-	 * @private
-	 */	
+	// Calls super (Backbone.Collection._add), and then for sorted collections, it moves model
+	// to correct position.
+	// @private
 	_add : function(models,options){
 		var model = Backbone.Collection.prototype._add.call(this,models,options);
 		if(this._sorted){
