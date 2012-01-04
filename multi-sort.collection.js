@@ -12,9 +12,9 @@ var MultiSortCollection = Backbone.Collection.extend({
 	// Public Methods
   	// -------------
 
-	// Sort by supplied attributes.  Primary sort is `argument[0]`
-	// and last sub-sort is `argument[n]`.  Defaults to most 
-	// recent sortAttributes, if no arguments are supplied.
+	// Sort by supplied `sortAttributes` array.  Primary sort
+	// is `argument[0]` and last sub-sort is `argument[n]`.  Defaults to most 
+	// recent `sortAttributes`, if no arguments are supplied.
 	sortBy : function(sortAttributes){
 		var attributes = arguments;
 		if(arguments.length){
@@ -36,7 +36,7 @@ var MultiSortCollection = Backbone.Collection.extend({
 	},
 	
 	// Private Functions
-  	// -------------
+  // -----------------
 
 	// Each recursion finds sortIndex of a
 	// subset of models that correspond to each sort attribute.
@@ -62,14 +62,15 @@ var MultiSortCollection = Backbone.Collection.extend({
 				return m.get(attr);
 			});
 		}		
-		
+		//index of first model with identical attribute, which will be added
+		//to indexes from child recursions
+		firstIndex = _.indexOf(models,first);
 		//Gets models with identical attribute
 		//and call recursive function on next attribute in the list.
 		models = _(models).filter(function(m){
 			return m.get(attr) === model.get(attr);
 		});
 		attributes = _.last(attributes,attributes.length-1);
-		firstIndex = _.indexOf(models,first);
 
 		return firstIndex + this._sortIndex(model,models,attributes);
 	},

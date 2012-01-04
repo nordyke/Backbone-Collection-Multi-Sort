@@ -11,9 +11,9 @@
 
 </pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <h2>Public Methods</h2>             </td>             <td class="code">               <div class="highlight"><pre>
 
-</pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>Sort by supplied attributes.  Primary sort is <code>argument[0]</code>
-and last sub-sort is <code>argument[n]</code>.  Defaults to most 
-recent sortAttributes, if no arguments are supplied.</p>             </td>             <td class="code">               <div class="highlight"><pre>
+</pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>Sort by supplied <code>sortAttributes</code> array.  Primary sort
+is <code>argument[0]</code> and last sub-sort is <code>argument[n]</code>.  Defaults to most 
+recent <code>sortAttributes</code>, if no arguments are supplied.</p>             </td>             <td class="code">               <div class="highlight"><pre>
   <span class="nx">sortBy</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sortAttributes</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">attributes</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">){</span>
@@ -60,19 +60,20 @@ so just return the index where model should be inserted</p>             </td>   
         <span class="k">return</span> <span class="nx">m</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attr</span><span class="p">);</span>
       <span class="p">});</span>
     <span class="p">}</span>   
-    
-</pre></div>             </td>           </tr>                               <tr id="section-12">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-12">&#182;</a>               </div>               <p>Gets models with identical attribute
+</pre></div>             </td>           </tr>                               <tr id="section-12">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-12">&#182;</a>               </div>               <p>index of first model with identical attribute, which will be added
+to indexes from child recursions</p>             </td>             <td class="code">               <div class="highlight"><pre>
+    <span class="nx">firstIndex</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">models</span><span class="p">,</span><span class="nx">first</span><span class="p">);</span>
+</pre></div>             </td>           </tr>                               <tr id="section-13">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-13">&#182;</a>               </div>               <p>Gets models with identical attribute
 and call recursive function on next attribute in the list.</p>             </td>             <td class="code">               <div class="highlight"><pre>
     <span class="nx">models</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="nx">models</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">){</span>
       <span class="k">return</span> <span class="nx">m</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attr</span><span class="p">)</span> <span class="o">===</span> <span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attr</span><span class="p">);</span>
     <span class="p">});</span>
     <span class="nx">attributes</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">last</span><span class="p">(</span><span class="nx">attributes</span><span class="p">,</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-    <span class="nx">firstIndex</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">models</span><span class="p">,</span><span class="nx">first</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="nx">firstIndex</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_sortIndex</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span><span class="nx">models</span><span class="p">,</span><span class="nx">attributes</span><span class="p">);</span>
   <span class="p">},</span>
   
-</pre></div>             </td>           </tr>                               <tr id="section-13">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-13">&#182;</a>               </div>               <p>Recursive sort on supplied sort attributes</p>             </td>             <td class="code">               <div class="highlight"><pre>
+</pre></div>             </td>           </tr>                               <tr id="section-14">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-14">&#182;</a>               </div>               <p>Recursive sort on supplied sort attributes</p>             </td>             <td class="code">               <div class="highlight"><pre>
   <span class="nx">_sortBy</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">models</span><span class="p">,</span><span class="nx">attributes</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">attr</span><span class="p">,</span>
         <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -81,13 +82,13 @@ and call recursive function on next attribute in the list.</p>             </td>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">models</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="nx">attr</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</pre></div>             </td>           </tr>                               <tr id="section-14">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-14">&#182;</a>               </div>               <p>Base case</p>             </td>             <td class="code">               <div class="highlight"><pre>
+</pre></div>             </td>           </tr>                               <tr id="section-15">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-15">&#182;</a>               </div>               <p>Base case</p>             </td>             <td class="code">               <div class="highlight"><pre>
     <span class="k">if</span><span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">){</span>
       <span class="k">return</span> <span class="nx">_</span><span class="p">(</span><span class="nx">models</span><span class="p">).</span><span class="nx">sortBy</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">){</span>
         <span class="k">return</span> <span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attr</span><span class="p">);</span>
       <span class="p">});</span>
     <span class="p">}</span>
-</pre></div>             </td>           </tr>                               <tr id="section-15">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-15">&#182;</a>               </div>               <p>Splits up models by sort attribute, 
+</pre></div>             </td>           </tr>                               <tr id="section-16">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-16">&#182;</a>               </div>               <p>Splits up models by sort attribute, 
 and then does a recursive sort on each group</p>             </td>             <td class="code">               <div class="highlight"><pre>
     <span class="k">else</span><span class="p">{</span>
       <span class="nx">models</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="nx">models</span><span class="p">).</span><span class="nx">chain</span><span class="p">().</span>
@@ -108,7 +109,7 @@ and then does a recursive sort on each group</p>             </td>             <
     <span class="p">}</span>
   <span class="p">},</span>
   
-</pre></div>             </td>           </tr>                               <tr id="section-16">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-16">&#182;</a>               </div>               <p>Calls parent function <code>Backbone.Collection._add</code>, and then for sorted collections, it moves model
+</pre></div>             </td>           </tr>                               <tr id="section-17">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-17">&#182;</a>               </div>               <p>Calls parent function <code>Backbone.Collection._add</code>, and then for sorted collections, it moves model
 to correct position.</p>             </td>             <td class="code">               <div class="highlight"><pre>
   <span class="nx">_add</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">models</span><span class="p">,</span><span class="nx">options</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_add</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">models</span><span class="p">,</span><span class="nx">options</span><span class="p">);</span>
